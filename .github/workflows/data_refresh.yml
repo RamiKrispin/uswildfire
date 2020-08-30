@@ -8,7 +8,7 @@ jobs:
     name: refresh the dashboard
     runs-on: ubuntu-18.04 
     container: 
-     image: rkrispin/coronavirus_dashboard:dev
+     image: rkrispin/us_wildfire:dev
     steps:
       - name: checkout_repo
         uses: actions/checkout@v2
