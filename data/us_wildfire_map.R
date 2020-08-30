@@ -1,3 +1,4 @@
+`%>%` <- magrittr::`%>%`
 load("./data/us_wildfire_poly.RData")
 
 if(is.null(poly) || nrow(poly) == 0){
