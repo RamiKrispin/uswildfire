@@ -10,6 +10,13 @@ output:
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
+
+bar_chart <- function(label, width = "100%", height = "14px", fill = "#00bfc4", background = NULL) {
+  bar <- htmltools::div(style = list(background = fill, width = width, height = height))
+  chart <- htmltools::div(style = list(flexGrow = 1, marginLeft = "6px", background = background), bar)
+  htmltools::div(style = list(display = "flex", alignItems = "center"), label, chart)
+}
+
 `%>%` <- magrittr::`%>%`
 load("./data/us_wildfire_map.RData")
 load("./data/us_wildfire_poly.RData")
@@ -33,8 +40,69 @@ Data
 ```{r table}
 
 
-reactable::reactable(data = df)
+reactable::reactable(data = df, 
+                     pagination = FALSE,
+                     highlight = TRUE,
+                     height = 1200,
+                     defaultSorted = "gis_acres",
+                     sortable = TRUE,
+                     borderless = TRUE,
+                     defaultPageSize = nrow(df),
+                     columns = list(
+                       object_id = reactable::colDef(name = "Object ID"),
+                       incident_name = reactable::colDef(name = "Incident Name"),
+                       IMT_name = reactable::colDef(name = "IMT Name"),
+                       unit_id = reactable::colDef(name = "Unit ID"),
+                       map_method = reactable::colDef(name = "Map Method"),
+                       comments = reactable::colDef(name = "Comments"),
+                       gis_acres = reactable::colDef(name = "GIS Acres",
+                                                     sortable = TRUE,
+                                                     defaultSortOrder = "desc",
+                                                     # format = reactable::colFormat(separators = TRUE, digits = 0),
+                                                     cell = function(value) {
+                                                       width <- paste0(value / max(df$gis_acres))
+                                                       value <- format(value, big.mark = ",")
+                                                       value <- format(value, width = 9, justify = "right")
+                                                       bar_chart(value, width = width, fill = "red", background = "#e1e1e1")
+                                                     },
+                                                     align = "left"),
+                       shape_area = reactable::colDef(name = "Shape Area",
+                                                      format = reactable::colFormat(separators = TRUE, digits = 5)),
+                       global_id_2 = reactable::colDef(name = "Global ID")
+                       
+                     ))
 ```
 
+About
+===================================== 
 
+### About
+
+**The US Wildfire Dashboard**
+
+The US Wildfire Dashboard provides an overview of the ongoing wildfire in the US. This dashboard is built with R using [Rmakrdown](https://rmarkdown.rstudio.com/) and [flexdashboard](https://rmarkdown.rstudio.com/flexdashboard/) framework, and can easily reproduce by others. The code behind the dashboard available [here](https://github.com/RamiKrispin/uswildfire)
+
+**Data**
+
+The input data for this dashboard is the [National Interagency Fire Center ArcGIS Online Site](https://data-nifc.opendata.arcgis.com/).
+
+Data on the dashboard is refreshed hourly, where the raw data on the NIFC website is getting updated every few hours.
+
+
+**Packages**
+
+* Dashboard interface - the [flexdashboard](https://rmarkdown.rstudio.com/flexdashboard/) package. 
+* Mapping - [leaflet](https://rstudio.github.io/leaflet/) for plotting the map and [sf](https://r-spatial.github.io/sf/index.html) packages
+* Data - [jsonlite](https://github.com/jeroen/jsonlite) for parsing the raw data
+* Tables - the [reactable](https://glin.github.io/reactable/) package
+
+**Deployment and reproducibly**
+
+The dashboard was deployed to Github docs. If you wish to deploy and/or modify the dashboard on your Github account, you can apply the following steps:
+
+* Fork the dashboard [repository](https://github.com/RamiKrispin/uswildfire), or
+* Clone it and push it to your Github package
+* Here some general guidance about deployment of flexdashboard on Github page - [link](https://github.com/pbatey/flexdashboard-example)
+
+For any question or feedback, you can either open an [issue](https://github.com/RamiKrispin/uswildfire/issues) or contact me on [Twitter](https://twitter.com/Rami_Krispin).
 
