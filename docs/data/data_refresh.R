@@ -51,6 +51,9 @@ poly <- lapply(seq_along(raw$features$geometry$rings), function(i){
 if(is.null(poly) || nrow(poly) == 0){
   stop("Could not create the data")
 } else{
-  save(poly, file = "./data/us_wildfire_poly.RData")
+  
+  run_time <- Sys.time()
+  attributes(run_time)$tzone <- "America/Los_Angeles" 
+  save(poly, run_time, file = "./data/us_wildfire_poly.RData")
 }
 

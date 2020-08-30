@@ -7,7 +7,7 @@ LABEL maintainer="Rami Krispin <rami.krispin@gmail.com>"
 #COPY install_packages.R packages/
 #RUN Rscript packages/install_packages.R
 
-#RUN sudo apt-get update && sudo apt-get install pandoc -y
+RUN sudo apt-get update && sudo apt-get install curl -y
 
 #RUN git --version
 

@@ -40,7 +40,7 @@ Data
 ```{r table}
 
 
-reactable::reactable(data = df, 
+table <- reactable::reactable(data = df, 
                      pagination = FALSE,
                      highlight = TRUE,
                      height = 1200,
@@ -71,6 +71,17 @@ reactable::reactable(data = df,
                        global_id_2 = reactable::colDef(name = "Global ID")
                        
                      ))
+
+
+ htmltools::div(class = "us-wildfire",
+    htmltools::div(class = "us-wildfire-header",
+        htmltools::div(class = "us-wildfires-title", "Source: National Interagency Fire Center ArcGIS Online Site"),
+        
+        paste("Last Update: ", run_time, " PST", sep = "")
+    ),
+    table
+)
+
 ```
 
 About
