@@ -57,12 +57,12 @@ steps:
 
 **Docker**
 
-The supporting docker with the requirement packages for running this
+The supporting docker with the required packages for running this
 dashboard is available
 [here](https://hub.docker.com/repository/docker/rkrispin/us_wildfire).
-To run the dashboard localy with RStudio follow the following steps:
+To run the dashboard locally with RStudio follow the following steps:
 
-  - Clone the the dashboard
+  - Clone the dashboard
     [repository](https://github.com/RamiKrispin/uswildfire)
   - Run the following docker:
 

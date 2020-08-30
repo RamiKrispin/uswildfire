@@ -118,11 +118,9 @@ The dashboard was deployed to Github docs. If you wish to deploy and/or modify t
 * Here some general guidance about deployment of flexdashboard on Github page - [link](https://github.com/pbatey/flexdashboard-example)
 
 
-**Docker**
+The supporting docker with the required packages for running this dashboard is available [here](https://hub.docker.com/repository/docker/rkrispin/us_wildfire). To run the dashboard locally with RStudio follow the following steps:
 
-The supporting docker with the requirement packages for running this dashboard is available [here](https://hub.docker.com/repository/docker/rkrispin/us_wildfire). To run the dashboard localy with RStudio follow the following steps:
-
-* Clone the the dashboard [repository](https://github.com/RamiKrispin/uswildfire)
+* Clone the dashboard [repository](https://github.com/RamiKrispin/uswildfire)
 * Run the following docker:
 
 ``` bash
@@ -130,7 +128,6 @@ docker run -p 8787:8787 -e PASSWORD='Your_Password' -e USER='Your_Username' -v ~
 ```
 
 Where the `Your Password` and `Your Username` above should replace with the password and username you wish to set for the RStudio instance. The `your_local_path` argument should replace with the local path of the cloned dashboard on your machine. Once the docker is lunched, use on your browser `http://localhost:8787` for login RStudio (using the credential you set above) and access the dashboard on sub-folder `uswildfire` and render the `index.Rmd` file to lunch the dashboard.
-
 
 
 For any question or feedback, you can either open an [issue](https://github.com/RamiKrispin/uswildfire/issues) or contact me on [Twitter](https://twitter.com/Rami_Krispin).
