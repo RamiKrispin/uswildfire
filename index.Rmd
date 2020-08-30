@@ -10,8 +10,15 @@ output:
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
-
+`%>%` <- magrittr::`%>%`
 load("./data/us_wildfire_map.RData")
+load("./data/us_wildfire_poly.RData")
+
+df <- poly %>% dplyr::select(object_id = OBJECTID, incident_name = IncidentName,
+                             IMT_name = IMTName, unit_id = UnitID,
+                             map_method = MapMethod, comments = Comments,
+                             gis_acres = GISAcres, shape_area = Shape__Area, global_id_2 = GlobalID_2) %>%
+  dplyr::distinct()
 ```
 
 Map
@@ -23,6 +30,11 @@ m
 
 Data
 ===================================== 
+```{r table}
+
+
+reactable::reactable(data = df)
+```
 
 
 

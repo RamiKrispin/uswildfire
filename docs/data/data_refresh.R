@@ -40,7 +40,7 @@ poly <- lapply(seq_along(raw$features$geometry$rings), function(i){
 }) %>%
   dplyr::bind_rows()
 
-save(poly, file = "./data/wildfire_poly.RData")
+save(poly, file = "./data/us_wildfire_poly.RData")
 
 
 
