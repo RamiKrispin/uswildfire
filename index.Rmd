@@ -41,45 +41,45 @@ Data
 
 
 table <- reactable::reactable(data = df, 
-                     pagination = FALSE,
-                     highlight = TRUE,
-                     height = 1200,
-                     defaultSorted = "gis_acres",
-                     sortable = TRUE,
-                     borderless = TRUE,
-                     defaultPageSize = nrow(df),
-                     columns = list(
-                       object_id = reactable::colDef(name = "Object ID"),
-                       incident_name = reactable::colDef(name = "Incident Name"),
-                       IMT_name = reactable::colDef(name = "IMT Name"),
-                       unit_id = reactable::colDef(name = "Unit ID"),
-                       map_method = reactable::colDef(name = "Map Method"),
-                       comments = reactable::colDef(name = "Comments"),
-                       gis_acres = reactable::colDef(name = "GIS Acres",
-                                                     sortable = TRUE,
-                                                     defaultSortOrder = "desc",
-                                                     # format = reactable::colFormat(separators = TRUE, digits = 0),
-                                                     cell = function(value) {
-                                                       width <- paste0(value / max(df$gis_acres))
-                                                       value <- format(value, big.mark = ",")
-                                                       value <- format(value, width = 9, justify = "right")
-                                                       bar_chart(value, width = width, fill = "red", background = "#e1e1e1")
-                                                     },
-                                                     align = "left"),
-                       shape_area = reactable::colDef(name = "Shape Area",
-                                                      format = reactable::colFormat(separators = TRUE, digits = 5)),
-                       global_id_2 = reactable::colDef(name = "Global ID")
-                       
-                     ))
+                              pagination = FALSE,
+                              highlight = TRUE,
+                              height = 1200,
+                              defaultSorted = "gis_acres",
+                              sortable = TRUE,
+                              borderless = TRUE,
+                              defaultPageSize = nrow(df),
+                              columns = list(
+                                object_id = reactable::colDef(name = "Object ID"),
+                                incident_name = reactable::colDef(name = "Incident Name"),
+                                IMT_name = reactable::colDef(name = "IMT Name"),
+                                unit_id = reactable::colDef(name = "Unit ID"),
+                                map_method = reactable::colDef(name = "Map Method"),
+                                comments = reactable::colDef(name = "Comments"),
+                                gis_acres = reactable::colDef(name = "GIS Acres",
+                                                              sortable = TRUE,
+                                                              defaultSortOrder = "desc",
+                                                              # format = reactable::colFormat(separators = TRUE, digits = 0),
+                                                              cell = function(value) {
+                                                                width <- paste0(value * 100 / max(df$gis_acres), "%")
+                                                                # Add thousands separators
+                                                                value <- format(value, big.mark = ",")
+                                                                bar_chart(value, width = width, fill = "red")
+                                                              },
+                                                              align = "left"),
+                                shape_area = reactable::colDef(name = "Shape Area",
+                                                               format = reactable::colFormat(separators = TRUE, digits = 5)),
+                                global_id_2 = reactable::colDef(name = "Global ID")
+                                
+                              ))
 
 
- htmltools::div(class = "us-wildfire",
-    htmltools::div(class = "us-wildfire-header",
-        htmltools::div(class = "us-wildfires-title", "Source: National Interagency Fire Center ArcGIS Online Site"),
-        
-        paste("Last Update: ", run_time, " PST", sep = "")
-    ),
-    table
+htmltools::div(class = "us-wildfire",
+               htmltools::div(class = "us-wildfire-header",
+                              htmltools::div(class = "us-wildfires-title", "Source: National Interagency Fire Center ArcGIS Online Site"),
+                              
+                              paste("Last Update: ", run_time, " PST", sep = "")
+               ),
+               table
 )
 
 ```
