@@ -90,7 +90,10 @@ About
 
 **The US Wildfire Dashboard**
 
-The US Wildfire Dashboard provides an overview of the ongoing wildfire in the US. This dashboard is built with R using [Rmakrdown](https://rmarkdown.rstudio.com/) and [flexdashboard](https://rmarkdown.rstudio.com/flexdashboard/) framework, and can easily reproduce by others. The code behind the dashboard available [here](https://github.com/RamiKrispin/uswildfire)
+The US Wildfire Dashboard provides a live update for the ongoing wildfire in the US. This dashboard is built with R using [Rmakrdown](https://rmarkdown.rstudio.com/) and [flexdashboard](https://rmarkdown.rstudio.com/flexdashboard/) framework, and can easily reproduce by others. The code behind the dashboard available [here](https://github.com/RamiKrispin/uswildfire)
+
+
+
 
 **Data**
 
@@ -104,7 +107,7 @@ Data on the dashboard is refreshed hourly with [Github Actions](https://github.c
 * Dashboard interface - the [flexdashboard](https://rmarkdown.rstudio.com/flexdashboard/) package. 
 * Mapping - [leaflet](https://rstudio.github.io/leaflet/) for plotting the map and [sf](https://r-spatial.github.io/sf/index.html) packages
 * Data - [jsonlite](https://github.com/jeroen/jsonlite) for parsing the raw data
-* Tables - the [reactable](https://glin.github.io/reactable/) package
+* Tables - the [reactable](https://glin.github.io/reactable/) and [htmltools](https://github.com/rstudio/htmltools) packages
 
 **Deployment and reproducibly**
 
