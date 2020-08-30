@@ -1,37 +1,28 @@
 ---
-title: "Untitled"
+title: "US Wildfire Dashboard"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
+    orientation: rows
+    social: menu
+    source_code: embed
     vertical_layout: fill
 ---
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
+
+load("./data/us_wildfire_map.RData")
 ```
 
-Column {data-width=650}
------------------------------------------------------------------------
+Map
+===================================== 
 
-### Chart A
-
-```{r}
-
+```{r map}
+m
 ```
 
-Column {data-width=350}
------------------------------------------------------------------------
+Data
+===================================== 
 
-### Chart B
-
-```{r}
-
-```
-
-### Chart C
-
-```{r}
-
-```
 
 
